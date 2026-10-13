@@ -4,6 +4,19 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.0] - 2026-10-13
+
+First release. The demo is live at https://gloss-free.ondelva.com, with screenshots in
+`docs/screenshots/` and the link to Pro.
+
+### Fixed
+
+- A caption is now only a paragraph set wholly in emphasis right after a picture; a paragraph with one emphasised word there stays body text. The caption gets class `gloss-caption`.
+- A picture without a caption keeps the usual space below it.
+- Page titles end in `site.name` instead of a fixed name.
+- The theme toggle reaches Dark when the browser blocks storage.
+- Reference-style images (`![alt][ref]`) are left out of word counts, like inline ones.
+
 ## [0.9.2] - 2026-10-13
 
 ### Changed

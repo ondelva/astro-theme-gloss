@@ -16,7 +16,7 @@ export const nav = {
 } as const;
 
 export const seo = {
-  titleTemplate: '%s · Hana Ito',
+  titleTemplate: `%s · ${site.name}`,
   twitterHandle: '',
   jsonLd: { type: 'Person' as 'Person' | 'Organization', name: site.author },
 };

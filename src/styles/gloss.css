@@ -8,7 +8,9 @@
    aligns to its left edge, so the margin reads as empty paper on the right. */
 .page {
   width: 100%;
-  max-width: calc(var(--content-width) + var(--margin-gap) + var(--margin-width) + 2 * var(--gutter));
+  max-width: calc(
+    var(--content-width) + var(--margin-gap) + var(--margin-width) + 2 * var(--gutter)
+  );
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -42,6 +44,7 @@ html,
 .font-ui,
 .gloss-ref,
 .gloss-num,
+.gloss-caption,
 .gloss-body table {
   font-size-adjust: 0.53;
 }
@@ -163,7 +166,7 @@ mark {
 }
 
 /* A picture is a paragraph holding only an image. A line set wholly in emphasis right after
-   it is its caption: `*Caption. Photo: name, licence.*`, plain Markdown, no component.
+   it is its caption (class gloss-caption, from glossMarks): `*Caption. Photo: name, licence.*`, plain Markdown, no component.
    A tall picture stops at 36rem high instead of filling the screen. */
 .gloss-body img {
   display: block;
@@ -173,17 +176,19 @@ mark {
   height: auto;
 }
 .gloss-body p:has(> img:only-child) {
-  margin-block: 1.75em 0;
+  margin-block: 1.75em;
 }
-.gloss-body p:has(> img:only-child) + p:has(> em:only-child) {
+.gloss-body p:has(> img:only-child):has(+ .gloss-caption) {
+  margin-block-end: 0;
+}
+.gloss-body .gloss-caption {
   margin-block-start: 0.6em;
   font-family: var(--font-heading);
   font-size: 0.875rem;
-  font-size-adjust: 0.53;
   line-height: 1.45;
   color: var(--muted);
 }
-.gloss-body p:has(> img:only-child) + p > em:only-child {
+.gloss-caption > em {
   font-style: normal;
 }
 

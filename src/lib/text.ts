@@ -7,7 +7,7 @@ export const countWords = (markdown: string): number =>
   markdown
     .replace(/^(```|~~~)[^]*?^\1/gm, ' ')
     .replace(/<!--[^]*?-->/g, ' ')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/!\[[^\]]*\](\([^)]*\)|\[[^\]]*\])/g, ' ')
     .replace(/\]\([^)]*\)/g, ']')
     .replace(/\[\^[^\]]+\]:?/g, ' ')
     .replace(/==|\+\+/g, '')

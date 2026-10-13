@@ -38,6 +38,10 @@ assert.match(html, /missing one\[\^zz\]/);
 // Marks.
 assert.match(html, /<mark>marked<\/mark>/);
 assert.match(html, /<span class="hand-u">drawn<\/span>/);
+// A caption is a paragraph wholly in emphasis after an image; one emphasised word is not.
+const pics = render('![a](x.jpg)\n\n*Caption.*\n\n![b](y.jpg)\n\nThis was *not* it.\n');
+assert.match(pics, /<p class="gloss-caption"><em>Caption\.<\/em><\/p>/);
+assert.equal(pics.match(/gloss-caption/g)?.length, 1);
 assert.equal(splitMarks('C++ and i++ stay'), null);
 assert.equal(splitMarks('a == b'), null);
 // Switched off: ordinary footnotes, marks still work.

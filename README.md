@@ -2,7 +2,8 @@
 
 An Astro theme for a personal blog of long essays: a book page, a wide margin, and your footnotes written in it by hand. Free and MIT-licensed.
 
-[Live demo](https://gloss-free.ondelva.com) · [Pro demo](https://gloss.ondelva.com)
+[Live demo](https://gloss-free.ondelva.com) · [Pro demo](https://gloss.ondelva.com) ·
+[Get Pro](https://buy.polar.sh/polar_cl_hPrXyP9mUZP6xdiLYiPQNqpzpUWuE5gGLQ90t41idL8)
 
 ![Gloss: a long essay with handwritten notes in the margin](docs/screenshots/home-light.png)
 
@@ -55,7 +56,9 @@ Set `SITE_URL` to your address afterwards. See [docs/deploy.md](docs/deploy.md).
 
 ## Free vs Pro
 
-The free edition is a finished essay blog with margin notes. Pro adds ways to find, mark up and keep up with what you write.
+The free edition is a finished essay blog with margin notes. Pro adds ways to find, mark up and keep up with what you write:
+see it at [gloss.ondelva.com](https://gloss.ondelva.com), and
+[buy it here](https://buy.polar.sh/polar_cl_hPrXyP9mUZP6xdiLYiPQNqpzpUWuE5gGLQ90t41idL8): $49 for one person, $129 for a team of up to ten.
 
 |                | Free                             | Pro                                                       |
 | -------------- | -------------------------------- | --------------------------------------------------------- |
@@ -71,8 +74,6 @@ The free edition is a finished essay blog with margin notes. Pro adds ways to fi
 | License        | MIT                              | Commercial, unlimited end products                        |
 | Footer credit  | One line, easy to remove         | None                                                      |
 | Support        | GitHub Issues                    | Email (im@ondelva.com), 2 business days                   |
-
-See the [Pro demo](https://gloss.ondelva.com).
 
 ## License
 

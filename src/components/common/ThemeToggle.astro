@@ -29,9 +29,12 @@
     if (label) label.textContent = value[0].toUpperCase() + value.slice(1);
   };
 
-  apply(read());
+  // Kept here too: with storage blocked, read() would say 'system' on every click.
+  let current = read();
+  apply(current);
   button?.addEventListener('click', () => {
-    const next = order[(order.indexOf(read() as (typeof order)[number]) + 1) % order.length];
+    const next = order[(order.indexOf(current as (typeof order)[number]) + 1) % order.length];
+    current = next;
     try {
       localStorage.setItem(KEY, next);
     } catch {}

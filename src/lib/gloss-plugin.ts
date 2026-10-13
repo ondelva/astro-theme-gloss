@@ -7,6 +7,8 @@
 //
 // glossMarks: ==highlighted== becomes <mark>, ++underlined++ a hand-drawn underline span.
 // Both work inside one run of plain text: they do not span links, emphasis or code.
+// It also marks a caption: a paragraph wholly in emphasis right after a paragraph holding only
+// an image gets class gloss-caption.
 import type { SatteriProcessorOptions } from '@astrojs/markdown-satteri';
 
 type Entry = NonNullable<SatteriProcessorOptions['mdastPlugins']>[number];
@@ -131,8 +133,23 @@ export const splitMarks = (value: string): Node[] | null => {
   return out;
 };
 
+const only = (node: Node | undefined, type: string) =>
+  node?.type === 'paragraph' && node.children?.length === 1 && node.children[0]!.type === type;
+
 export const glossMarks: Plugin = {
   name: 'gloss-marks',
+  before(root, ctx) {
+    const blocks = root.children as unknown as Node[];
+    for (let i = blocks.length - 1; i > 0; i--) {
+      if (!only(blocks[i - 1], 'image') || !only(blocks[i], 'emphasis')) continue;
+      const caption = {
+        ...plain(blocks[i]!),
+        data: { hProperties: { className: ['gloss-caption'] } },
+      };
+      ctx.removeChildAt(root, i);
+      ctx.insertChildAt(root, i, [caption] as never);
+    }
+  },
   text(node, ctx) {
     const parts = splitMarks(node.value);
     if (parts) ctx.replaceNode(node, parts as never);
