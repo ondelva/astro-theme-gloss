@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Gloss: two lines of text and a pencil stroke in the margin. Replace with your own. -->
+  <rect width="64" height="64" fill="#f5f6f3"/>
+  <path d="M8 22h30M8 34h30M8 46h20" stroke="#23262b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M46 20c4 6 6 14 4 26" fill="none" stroke="#2a55a0" stroke-width="5" stroke-linecap="round"/>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #15171a; }
+      path:first-of-type { stroke: #e6e6e1; }
+      path:last-of-type { stroke: #8fb0ea; }
+    }
+  </style>
+</svg>

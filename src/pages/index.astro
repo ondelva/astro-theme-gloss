@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/gloss/PostList.astro';
+import { gloss, site } from '../config';
+import { getPosts } from '../lib/posts';
+import { renderMarks } from '../lib/text';
+
+const posts = await getPosts();
+const recent = posts.slice(0, gloss.homePosts);
+---
+
+<Base description={site.description}>
+  <div class="page">
+    <section class="max-w-[30rem] pt-16 pb-12 sm:pt-20">
+      <h1
+        class="text-[clamp(1.75rem,4.2vw,2.25rem)] leading-tight font-normal"
+        set:html={renderMarks(gloss.intro)}
+      />
+      {gloss.introNote && (
+        <p class="hand mt-3 -rotate-2 text-2xl">
+          <span aria-hidden="true">↳ </span>
+          {gloss.introNote}
+        </p>
+      )}
+    </section>
+
+    {recent.length > 0 && (
+      <section aria-labelledby="recent" class="max-w-content">
+        <h2 id="recent" class="sr-only">
+          Recent essays
+        </h2>
+        <PostList posts={recent} />
+        {posts.length > recent.length && (
+          <p class="font-ui mt-5 text-sm">
+            <a href="/posts" class="underline">
+              All {posts.length} essays
+            </a>
+          </p>
+        )}
+      </section>
+    )}
+  </div>
+</Base>

@@ -1,0 +1,70 @@
+/*
+  tokens.css -- the design tokens for this theme. These are the defaults;
+  to retheme the site, override any variable in src/styles/theme.css rather
+  than editing this file.
+
+  Colors use light-dark(): the first value applies in light mode, the second
+  in dark mode. Overriding a color with a plain value changes both modes at
+  once; use light-dark(<light>, <dark>) in an override to keep them apart.
+
+  Every color token is checked against WCAG AA by `pnpm check:contrast`.
+  Change a color, run it again.
+*/
+
+:root {
+  color-scheme: light dark;
+
+  /* Colors */
+  --background: light-dark(#f5f6f3, #15171a); /* cool paper */
+  --surface: light-dark(#ecede8, #1e2125);
+  --foreground: light-dark(#23262b, #e6e6e1); /* graphite */
+  --muted: light-dark(#5b6068, #9da2a9); /* meta, captions, dates */
+  --border: light-dark(#d9dad3, #33373c);
+  --primary: light-dark(#2a55a0, #8fb0ea); /* pencil blue: links, margin notes, hand marks */
+  --primary-hover: light-dark(#1e4180, #b4caf2);
+  --on-primary: light-dark(#ffffff, #15171a);
+  --mark: light-dark(#f2e07a, #5a4e12); /* highlighter, behind --foreground text */
+  --focus-ring: var(--primary);
+
+  /* Type. --font-body (Alegreya), --font-heading (Geist, UI and meta) and --font-hand
+     (Caveat, margin notes) are defined by the fonts block in astro.config.mjs, together
+     with their fallback stacks. Do not redeclare them here: this file is served after
+     those, so a copy here wins and the webfonts never render. Swap a face in
+     astro.config.mjs, or override in theme.css. */
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Layout */
+  --content-width: 40rem; /* article body, about 65ch */
+  --wide-width: 72rem; /* max container */
+  --radius: 0; /* paper, not cards: marks are drawn, not boxed */
+
+  /* Motion */
+  --transition-fast: 120ms ease;
+}
+
+/*
+  Light-mode values for browsers without light-dark() (Safari < 17.5,
+  Chrome < 123). Must mirror the light values above.
+*/
+@supports not (color: light-dark(#000, #fff)) {
+  :root {
+    color-scheme: light;
+    --background: #f5f6f3;
+    --surface: #ecede8;
+    --foreground: #23262b;
+    --muted: #5b6068;
+    --border: #d9dad3;
+    --primary: #2a55a0;
+    --primary-hover: #1e4180;
+    --on-primary: #ffffff;
+    --mark: #f2e07a;
+  }
+}
+
+/* Theme switcher (ThemeToggle.astro). Without an explicit choice the OS decides. */
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}

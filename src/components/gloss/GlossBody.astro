@@ -1,0 +1,33 @@
+---
+// The article body: rendered Markdown with margin notes (styles in src/styles/gloss.css).
+---
+
+<div class="gloss-body" data-gloss>
+  <slot />
+</div>
+
+<script>
+  // Margin notes have zero height so a long one never stretches its paragraph's row.
+  // Two notes close together would then overlap: push each one below the one above.
+  // Without this script the notes still sit beside their paragraphs.
+  const GAP = 12;
+  const layout = (body: HTMLElement) => {
+    let bottom = -Infinity;
+    for (const note of body.querySelectorAll<HTMLElement>('.gloss-note')) {
+      note.style.translate = '';
+      if (getComputedStyle(note).height !== '0px') continue; // narrow screen: in the flow
+      const top = note.getBoundingClientRect().top;
+      const shift = Math.max(0, bottom + GAP - top);
+      if (shift) note.style.translate = `0 ${shift}px`;
+      bottom = top + shift + note.scrollHeight;
+    }
+    // The last note can run past the end of the text: keep it clear of what follows.
+    body.style.paddingBottom = '';
+    const overflow = bottom - body.getBoundingClientRect().bottom;
+    if (overflow > 0) body.style.paddingBottom = `${overflow}px`;
+  };
+  for (const body of document.querySelectorAll<HTMLElement>('[data-gloss]')) {
+    new ResizeObserver(() => layout(body)).observe(body);
+    document.fonts.ready.then(() => layout(body));
+  }
+</script>

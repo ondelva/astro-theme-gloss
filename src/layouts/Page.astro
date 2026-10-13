@@ -1,0 +1,19 @@
+---
+// Layout for Markdown pages in src/pages (about.md). Footnotes become margin notes here too.
+import Base from './Base.astro';
+import GlossBody from '../components/gloss/GlossBody.astro';
+
+interface Props {
+  frontmatter: { title: string; description: string };
+}
+const { title, description } = Astro.props.frontmatter;
+---
+
+<Base title={title} description={description}>
+  <article class="page pt-14 sm:pt-20">
+    <h1 class="max-w-content mb-10 text-4xl font-bold">{title}</h1>
+    <GlossBody>
+      <slot />
+    </GlossBody>
+  </article>
+</Base>

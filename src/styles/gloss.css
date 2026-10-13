@@ -1,0 +1,265 @@
+/*
+  gloss.css -- the theme's signature: margin notes, highlighter, hand underline,
+  and the article body they live in. Markdown produces the markup
+  (src/lib/gloss-plugin.ts); this file is the only place it is styled.
+*/
+
+/* Page frame: the text column plus the margin the notes live in. Everything
+   aligns to its left edge, so the margin reads as empty paper on the right. */
+.page {
+  width: 100%;
+  max-width: calc(var(--content-width) + var(--margin-gap) + var(--margin-width) + 2rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+:root {
+  --margin-width: 13rem;
+  --margin-gap: 3rem;
+  /* The pencil line under ++text++. A data-URI SVG cannot read CSS variables, so the
+     stroke colour is written out per mode. Keep them equal to --primary. */
+  --hand-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 C 25 3, 55 7, 85 4 S 112 4.5, 119 3' fill='none' stroke='%232a55a0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --hand-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 C 25 3, 55 7, 85 4 S 112 4.5, 119 3' fill='none' stroke='%238fb0ea' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+}
+:root[data-theme='dark'] {
+  --hand-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 C 25 3, 55 7, 85 4 S 112 4.5, 119 3' fill='none' stroke='%238fb0ea' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Each role renders at the x-height of its default face (Alegreya 0.452, Geist 0.53,
+   Caveat 0.4), so a face you swap in astro.config.mjs keeps the same visual size.
+   With the default faces these values are the fonts' own and change nothing. */
+html,
+.font-prose {
+  font-size-adjust: 0.452;
+}
+.font-ui,
+.gloss-ref,
+.gloss-num,
+.gloss-body table,
+.gloss-note.is-long {
+  font-size-adjust: 0.53;
+}
+.hand,
+.gloss-note:not(.is-long) {
+  font-size-adjust: 0.4;
+}
+
+/* Highlighter: a thick underline pulled up behind the glyphs. It follows line
+   breaks, which a background block does not do cleanly. */
+mark {
+  color: inherit;
+  background: none;
+  text-decoration: underline var(--mark);
+  text-decoration-thickness: 0.55em;
+  text-underline-offset: -0.32em;
+  text-decoration-skip-ink: none;
+}
+
+/* Pencil underline. box-decoration-break gives every line of a wrapped phrase its own stroke. */
+.hand-u {
+  background: var(--hand-line) left bottom / 100% 0.42em no-repeat;
+  padding-bottom: 0.18em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Handwriting, used for margin notes and the short notes in post lists. */
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--primary);
+}
+
+/* ---------- Article body ---------- */
+
+.gloss-body {
+  display: grid;
+  grid-template-columns: minmax(0, var(--content-width));
+  font-size: 1.1875rem;
+  line-height: 1.7;
+}
+.gloss-body > * {
+  grid-column: 1;
+  margin-block: 0 1.25em;
+}
+.gloss-body h2 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-block: 1.8em 0.6em;
+}
+.gloss-body h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-block: 1.5em 0.5em;
+}
+.gloss-body ul,
+.gloss-body ol {
+  padding-inline-start: 1.4em;
+}
+.gloss-body ul {
+  list-style: disc;
+}
+.gloss-body ol {
+  list-style: decimal;
+}
+.gloss-body li + li {
+  margin-block-start: 0.35em;
+}
+.gloss-body li::marker {
+  color: var(--muted);
+}
+.gloss-body blockquote {
+  border-inline-start: 2px solid var(--border);
+  padding-inline-start: 1.2em;
+  font-style: italic;
+}
+.gloss-body blockquote > * + * {
+  margin-block-start: 1em;
+}
+.gloss-body pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: var(--surface);
+  padding: 1em 1.2em;
+  overflow-x: auto;
+}
+.gloss-body :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  padding: 0.1em 0.3em;
+}
+.gloss-body table {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  border-collapse: collapse;
+  width: 100%;
+}
+.gloss-body th,
+.gloss-body td {
+  text-align: start;
+  padding: 0.5em 1em 0.5em 0;
+  border-block-end: 1px solid var(--border);
+}
+.gloss-body th {
+  font-weight: 600;
+  border-block-end-color: var(--foreground);
+}
+.gloss-body hr {
+  border: 0;
+  border-block-start: 1px solid var(--border);
+}
+
+/* A picture is a paragraph holding only an image. A line set wholly in emphasis right after
+   it is its caption: `*Caption. Photo: name, licence.*`, plain Markdown, no component.
+   A tall picture stops at 36rem high instead of filling the screen. */
+.gloss-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 36rem;
+  height: auto;
+}
+.gloss-body p:has(> img:only-child) {
+  margin-block: 1.75em 0;
+}
+.gloss-body p:has(> img:only-child) + p:has(> em:only-child) {
+  margin-block-start: 0.6em;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-size-adjust: 0.53;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.gloss-body p:has(> img:only-child) + p > em:only-child {
+  font-style: normal;
+}
+
+/* Reference numbers in the text. */
+.gloss-ref {
+  font-family: var(--font-heading);
+  font-size: 0.65em;
+  font-weight: 600;
+  line-height: 0;
+  margin-inline-start: 0.05em;
+}
+.gloss-ref a {
+  color: var(--primary);
+  text-decoration: none;
+  /* a taller hit area without pushing the number away from its word */
+  padding-block: 0.4em;
+}
+.gloss-ref a:hover {
+  text-decoration: underline;
+}
+
+/* The note. Narrow screens: under its paragraph, with a pencil rule. */
+.gloss-note {
+  font-family: var(--font-hand);
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1.15;
+  color: var(--primary);
+  border-inline-start: 2px solid var(--primary);
+  padding-inline-start: 0.75rem;
+  margin-block: -0.5em 1.5em;
+}
+.gloss-num {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: 0.35em;
+  margin-inline-end: 0.25em;
+}
+/* Long notes would be tiring in handwriting: small UI type, pencil number kept. */
+.gloss-note.is-long {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.gloss-note.is-long .gloss-num {
+  color: var(--primary);
+}
+.gloss-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.gloss-note:target {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+/* Wide screens: the note moves into the margin beside the block it follows.
+   Zero height keeps a tall note from stretching that block's row; a short script
+   in Gloss.astro nudges a note down when it would run into the one above it. */
+@media (min-width: 64rem) {
+  .gloss-body {
+    grid-template-columns: minmax(0, var(--content-width)) var(--margin-width);
+    column-gap: var(--margin-gap);
+  }
+  .gloss-note {
+    grid-column: 2;
+    align-self: start;
+    height: 0;
+    overflow: visible;
+    border: 0;
+    padding: 0;
+    margin: 0.1em 0 0;
+  }
+}
+
+@media print {
+  .gloss-note {
+    height: auto;
+  }
+}
