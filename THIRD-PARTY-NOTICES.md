@@ -3,11 +3,11 @@
 This theme bundles the following third-party assets. Each is used under its own license.
 Update this file whenever an asset is added or removed.
 
-| Asset    | Type | Source                                     | License | Notice / attribution                   |
-| -------- | ---- | ------------------------------------------ | ------- | -------------------------------------- |
-| Alegreya | Font | https://fonts.google.com/specimen/Alegreya | OFL 1.1 | Copyright The Alegreya Project Authors |
-| Geist    | Font | https://fonts.google.com/specimen/Geist    | OFL 1.1 | Copyright The Geist Project Authors    |
-| Caveat   | Font | https://fonts.google.com/specimen/Caveat   | OFL 1.1 | Copyright The Caveat Project Authors   |
+| Asset   | Type | Source                                    | License | Notice / attribution                  |
+| ------- | ---- | ----------------------------------------- | ------- | ------------------------------------- |
+| Gelasio | Font | https://fonts.google.com/specimen/Gelasio | OFL 1.1 | Copyright The Gelasio Project Authors |
+| Geist   | Font | https://fonts.google.com/specimen/Geist   | OFL 1.1 | Copyright The Geist Project Authors   |
+| Caveat  | Font | https://fonts.google.com/specimen/Caveat  | OFL 1.1 | Copyright The Caveat Project Authors  |
 
 The faces are served by the Astro fontsource provider at build time (`fonts` in
 `astro.config.mjs`), latin subset.

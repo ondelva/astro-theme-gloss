@@ -8,15 +8,15 @@ import { gloss, site } from './src/config.ts';
 import { glossMarks, glossNotes } from './src/lib/gloss-plugin.ts';
 
 // Webfonts (fontsource, latin subset, all OFL). --font-body: book text and titles,
-// --font-heading: UI and meta, --font-hand: margin notes only. Alegreya is a text face drawn
-// for literature, with a pen rhythm the Caveat notes continue.
+// --font-heading: UI and meta, --font-hand: margin notes only. Gelasio is a calm screen serif
+// (Georgia's proportions, with kerning and lining figures), so the Caveat notes are the only hand.
 /** @type {NonNullable<import('astro').AstroUserConfig['fonts']>} */
 const fonts = [
   {
     provider: fontProviders.fontsource(),
-    name: 'Alegreya',
+    name: 'Gelasio',
     cssVariable: '--font-body',
-    weights: [400, 500, 700],
+    weights: [400, 700],
     styles: ['normal', 'italic'],
     subsets: ['latin'],
     fallbacks: ['Georgia', 'serif'],

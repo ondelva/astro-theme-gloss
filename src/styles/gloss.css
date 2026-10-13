@@ -29,18 +29,18 @@
   --hand-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 C 25 3, 55 7, 85 4 S 112 4.5, 119 3' fill='none' stroke='%238fb0ea' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
-/* Each role renders at the x-height of its default face (Alegreya 0.452, Geist 0.53,
+/* Each role renders at the x-height of its default face (Gelasio 0.481, Geist 0.53,
    Caveat 0.4), so a face you swap in astro.config.mjs keeps the same visual size.
    With the default faces these values are the fonts' own and change nothing. */
 html,
-.font-prose {
-  font-size-adjust: 0.452;
+.font-prose,
+.gloss-note.is-long {
+  font-size-adjust: 0.481;
 }
 .font-ui,
 .gloss-ref,
 .gloss-num,
-.gloss-body table,
-.gloss-note.is-long {
+.gloss-body table {
   font-size-adjust: 0.53;
 }
 .hand,
@@ -80,12 +80,14 @@ mark {
 .gloss-body {
   display: grid;
   grid-template-columns: minmax(0, var(--content-width));
-  font-size: 1.1875rem;
-  line-height: 1.7;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  /* Gelasio's default figures are old-style; in running prose dates and measures read better standing on the line */
+  font-variant-numeric: lining-nums;
 }
 .gloss-body > * {
   grid-column: 1;
-  margin-block: 0 1.25em;
+  margin-block: 0 0.95em;
 }
 .gloss-body h2 {
   font-size: 1.5rem;
@@ -214,16 +216,19 @@ mark {
 }
 .gloss-num {
   font-family: var(--font-heading);
+  font-style: normal;
   font-size: 0.7rem;
   font-weight: 600;
   vertical-align: 0.35em;
   margin-inline-end: 0.25em;
 }
-/* Long notes would be tiring in handwriting: small UI type, pencil number kept. */
+/* Long notes would be tiring in handwriting: small italic in the text face, pencil number kept. */
 .gloss-note.is-long {
-  font-family: var(--font-heading);
-  font-size: 0.8125rem;
-  line-height: 1.55;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.45;
   color: var(--muted);
 }
 .gloss-note.is-long .gloss-num {

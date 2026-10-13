@@ -26,7 +26,7 @@
   --mark: light-dark(#f2e07a, #5a4e12); /* highlighter, behind --foreground text */
   --focus-ring: var(--primary);
 
-  /* Type. --font-body (Alegreya), --font-heading (Geist, UI and meta) and --font-hand
+  /* Type. --font-body (Gelasio), --font-heading (Geist, UI and meta) and --font-hand
      (Caveat, margin notes) are defined by the fonts block in astro.config.mjs, together
      with their fallback stacks. Do not redeclare them here: this file is served after
      those, so a copy here wins and the webfonts never render. Swap a face in

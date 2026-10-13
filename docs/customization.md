@@ -48,7 +48,7 @@ Every colour is a token in `src/styles/tokens.css`, written as `light-dark(<ligh
 | `--background`                   | The paper.                                                        |
 | `--surface`                      | Code blocks and inline code.                                      |
 | `--foreground`                   | Text and table rules.                                             |
-| `--muted`                        | Dates, reading times, long notes, struck-out words.               |
+| `--muted`                        | Dates, reading times, long notes.                                 |
 | `--border`                       | Hairlines between list rows.                                      |
 | `--primary`                      | The pencil: links, margin notes, focus rings.                     |
 | `--primary-hover`                | Links on hover.                                                   |
@@ -70,11 +70,11 @@ The site follows the reader's system setting; the switch in the header cycles sy
 
 `astro.config.mjs` loads the fonts through Astro's font API from Fontsource, Latin subset, all under the SIL Open Font License. There are three roles, each a CSS variable:
 
-| Variable         | Role                                  | Default  |
-| ---------------- | ------------------------------------- | -------- |
-| `--font-body`    | Text and titles                       | Alegreya |
-| `--font-heading` | Navigation, dates, labels, long notes | Geist    |
-| `--font-hand`    | Margin notes and handwritten lines    | Caveat   |
+| Variable         | Role                               | Default |
+| ---------------- | ---------------------------------- | ------- |
+| `--font-body`    | Text, titles and long notes        | Gelasio |
+| `--font-heading` | Navigation, dates, labels          | Geist   |
+| `--font-hand`    | Margin notes and handwritten lines | Caveat  |
 
 To use another face, change `name` in the `fonts` list and run `pnpm dev`. For a font that needs a wider character set, change `subsets`.
 
