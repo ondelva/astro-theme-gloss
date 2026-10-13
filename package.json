@@ -1,7 +1,7 @@
 {
   "name": "astro-theme-gloss",
   "type": "module",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "description": "A free Astro theme for a personal blog of long essays, with handwritten margin notes, highlighter marks and pencil underlines.",
   "engines": {

@@ -8,14 +8,16 @@
    aligns to its left edge, so the margin reads as empty paper on the right. */
 .page {
   width: 100%;
-  max-width: calc(var(--content-width) + var(--margin-gap) + var(--margin-width) + 2rem);
+  max-width: calc(var(--content-width) + var(--margin-gap) + var(--margin-width) + 2 * var(--gutter));
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: var(--gutter);
 }
 
 :root {
   --margin-width: 13rem;
-  --margin-gap: 3rem;
+  --margin-gap: 4rem;
+  /* side margin of the page: 20px on a phone, growing to 32px */
+  --gutter: clamp(1.25rem, 4vw, 2rem);
   /* The pencil line under ++text++. A data-URI SVG cannot read CSS variables, so the
      stroke colour is written out per mode. Keep them equal to --primary. */
   --hand-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 C 25 3, 55 7, 85 4 S 112 4.5, 119 3' fill='none' stroke='%232a55a0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -81,24 +83,24 @@ mark {
   display: grid;
   grid-template-columns: minmax(0, var(--content-width));
   font-size: 1.125rem;
-  line-height: 1.6;
+  line-height: 1.7;
   /* Gelasio's default figures are old-style; in running prose dates and measures read better standing on the line */
   font-variant-numeric: lining-nums;
 }
 .gloss-body > * {
   grid-column: 1;
-  margin-block: 0 0.95em;
+  margin-block: 0 1.2em;
 }
 .gloss-body h2 {
   font-size: 1.5rem;
   line-height: 1.25;
   font-weight: 700;
-  margin-block: 1.8em 0.6em;
+  margin-block: 2.2em 0.75em;
 }
 .gloss-body h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  margin-block: 1.5em 0.5em;
+  margin-block: 1.8em 0.6em;
 }
 .gloss-body ul,
 .gloss-body ol {

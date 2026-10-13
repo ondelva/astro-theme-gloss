@@ -4,6 +4,14 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [0.9.2] - 2026-10-13
+
+### Changed
+
+- More room on the page: body line height 1.7 (Gelasio's larger x-height needs it), 1.2em between paragraphs, headings set apart from the paragraph above (2.2em) and closer to their own (0.75em), 64px between the text and the margin notes.
+- The side margin grows with the screen, from 20px on a phone to 32px (`--gutter` in `src/styles/gloss.css`).
+- Long margin notes get a little more leading.
+
 ## [0.9.1] - 2026-10-13
 
 ### Changed
