@@ -1,6 +1,6 @@
 # Writing
 
-Everything you publish lives in `src/content/`. A post is one Markdown (`.md`) or MDX (`.mdx`) file; the filename is its URL. This page covers the fields, the margin notes, and the two hand marks.
+Everything you publish lives in `src/content/`. A post is one Markdown (`.md`) or MDX (`.mdx`) file; the filename is its URL. This page covers the fields, the margin notes, the hand marks, and pictures, quotes and lists.
 
 ## A post
 
@@ -67,6 +67,26 @@ It was ++how often I went back++ that surprised me.
 `==text==` is a highlighter stroke, `++text++` a pencil underline. Both work inside plain text and do not reach across a link, emphasis or code. Text like `C++` or `a == b` is left alone because the marks need a word right after the opening pair.
 
 The home page opening line in `src/config.ts` (`gloss.intro`) takes the same two marks.
+
+## Pictures, quotes and lists
+
+Put pictures next to the post, in `src/content/posts/images/`, and link them relatively. They are resized at build time. A line set wholly in italics right after a picture is its caption:
+
+```md
+![A page of printed proof with handwritten corrections in every margin](./images/proof.jpg)
+
+_A page of Balzac's Eugénie Grandet, 1833. The Morgan Library & Museum, public domain._
+```
+
+A quote whose last paragraph starts with an em dash gets that paragraph set as its attribution, small and upright:
+
+```md
+> The first draft of anything is a way of finding out what you think.
+>
+> — A note pinned above my desk
+```
+
+Task lists (`- [x] done`, `- [ ] not yet`) get a pencilled box, ticked by hand. Ordinary lists, tables, code blocks and `###` subheadings are styled too.
 
 ## Pages
 

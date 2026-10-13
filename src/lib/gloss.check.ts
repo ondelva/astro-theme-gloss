@@ -42,6 +42,10 @@ assert.match(html, /<span class="hand-u">drawn<\/span>/);
 const pics = render('![a](x.jpg)\n\n*Caption.*\n\n![b](y.jpg)\n\nThis was *not* it.\n');
 assert.match(pics, /<p class="gloss-caption"><em>Caption\.<\/em><\/p>/);
 assert.equal(pics.match(/gloss-caption/g)?.length, 1);
+// The last paragraph of a quote is its attribution only when it starts with an em dash.
+const quotes = render('> Said.\n>\n> — Someone\n\n> One line — not credited.\n');
+assert.match(quotes, /<p class="gloss-attribution">— Someone<\/p>/);
+assert.equal(quotes.match(/gloss-attribution/g)?.length, 1);
 assert.equal(splitMarks('C++ and i++ stay'), null);
 assert.equal(splitMarks('a == b'), null);
 // Switched off: ordinary footnotes, marks still work.

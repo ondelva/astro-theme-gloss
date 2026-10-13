@@ -8,12 +8,19 @@
 // glossMarks: ==highlighted== becomes <mark>, ++underlined++ a hand-drawn underline span.
 // Both work inside one run of plain text: they do not span links, emphasis or code.
 // It also marks a caption: a paragraph wholly in emphasis right after a paragraph holding only
-// an image gets class gloss-caption.
+// an image gets class gloss-caption. And an attribution: the last paragraph of a blockquote,
+// when it starts with an em dash, gets class gloss-attribution.
 import type { SatteriProcessorOptions } from '@astrojs/markdown-satteri';
 
 type Entry = NonNullable<SatteriProcessorOptions['mdastPlugins']>[number];
 type Plugin = Extract<Entry, { name: string }>;
-type Node = { type: string; identifier?: string; value?: string; children?: Node[] };
+type Node = {
+  type: string;
+  identifier?: string;
+  value?: string;
+  children?: Node[];
+  data?: unknown;
+};
 
 /** Notes longer than this (characters of text) are set small in the UI face, not in handwriting. */
 export const LONG_NOTE = 200;
@@ -140,14 +147,29 @@ export const glossMarks: Plugin = {
   name: 'gloss-marks',
   before(root, ctx) {
     const blocks = root.children as unknown as Node[];
-    for (let i = blocks.length - 1; i > 0; i--) {
-      if (!only(blocks[i - 1], 'image') || !only(blocks[i], 'emphasis')) continue;
-      const caption = {
-        ...plain(blocks[i]!),
-        data: { hProperties: { className: ['gloss-caption'] } },
-      };
+    const swap = (i: number, node: Node) => {
       ctx.removeChildAt(root, i);
-      ctx.insertChildAt(root, i, [caption] as never);
+      ctx.insertChildAt(root, i, [node] as never);
+    };
+    for (let i = blocks.length - 1; i >= 0; i--) {
+      const block = blocks[i]!;
+      if (i > 0 && only(blocks[i - 1], 'image') && only(block, 'emphasis')) {
+        swap(i, { ...plain(block), data: { hProperties: { className: ['gloss-caption'] } } });
+        continue;
+      }
+      const kids = block.type === 'blockquote' ? (block.children ?? []) : [];
+      const last = kids[kids.length - 1];
+      if (
+        kids.length > 1 &&
+        last?.type === 'paragraph' &&
+        /^\s*—/.test(last.children?.[0]?.value ?? '')
+      ) {
+        const quote = plain(block);
+        quote.children![kids.length - 1]!.data = {
+          hProperties: { className: ['gloss-attribution'] },
+        };
+        swap(i, quote);
+      }
     }
   },
   text(node, ctx) {

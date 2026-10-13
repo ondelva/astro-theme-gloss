@@ -4,6 +4,14 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-10-13
+
+### Added
+
+- A quote's last paragraph, when it starts with an em dash, is set as its attribution (class `gloss-attribution`).
+- Task lists get a pencilled box with a hand-drawn tick.
+- `docs/content.md` covers pictures and captions, quotes and lists.
+
 ## [1.0.0] - 2026-10-13
 
 First release. The demo is live at https://gloss-free.ondelva.com, with screenshots in

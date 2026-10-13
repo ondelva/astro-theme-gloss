@@ -60,20 +60,20 @@ The free edition is a finished essay blog with margin notes. Pro adds ways to fi
 see it at [gloss.ondelva.com](https://gloss.ondelva.com), and
 [buy it here](https://buy.polar.sh/polar_cl_hPrXyP9mUZP6xdiLYiPQNqpzpUWuE5gGLQ90t41idL8): $49 for one person, $129 for a team of up to ten.
 
-|                | Free                             | Pro                                                       |
-| -------------- | -------------------------------- | --------------------------------------------------------- |
-| Pages          | Home, post, archive, about, 404  | + topics, reading log, search                             |
-| Margin notes   | ✓                                | ✓ + contents in the margin                                |
-| Hand marks     | `==highlight==`, `++underline++` | + `<Circle>`, `<Struck>`, `<Margin>`, a start-here circle |
-| Series         | –                                | ✓                                                         |
-| Search         | –                                | Pagefind, margin notes included                           |
-| Subscribe      | –                                | Buttondown form, Giscus comments                          |
-| Share cards    | One default image                | One per post, with its handwritten note                   |
-| Colour presets | 1                                | 4                                                         |
-| Font pairings  | 1                                | 2                                                         |
-| License        | MIT                              | Commercial, unlimited end products                        |
-| Footer credit  | One line, easy to remove         | None                                                      |
-| Support        | GitHub Issues                    | Email (im@ondelva.com), 2 business days                   |
+|                | Free                             | Pro                                                                                |
+| -------------- | -------------------------------- | ---------------------------------------------------------------------------------- |
+| Pages          | Home, post, archive, about, 404  | + topics, reading log, search                                                      |
+| Margin notes   | ✓                                | ✓ + contents in the margin                                                         |
+| Hand marks     | `==highlight==`, `++underline++` | + `<Circle>`, `<Struck>`, `<Insert>`, `<Bracket>`, `<Margin>`, a start-here circle |
+| Series         | –                                | ✓                                                                                  |
+| Search         | –                                | Pagefind, margin notes included                                                    |
+| Subscribe      | –                                | Buttondown form, Giscus comments                                                   |
+| Share cards    | One default image                | One per post, with its handwritten note                                            |
+| Colour presets | 1                                | 4                                                                                  |
+| Font pairings  | 1                                | 2                                                                                  |
+| License        | MIT                              | Commercial, unlimited end products                                                 |
+| Footer credit  | One line, easy to remove         | None                                                                               |
+| Support        | GitHub Issues                    | Email (im@ondelva.com), 2 business days                                            |
 
 ## License
 
