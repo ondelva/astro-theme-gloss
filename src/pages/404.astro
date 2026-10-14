@@ -1,21 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
+import { ui } from '../config';
+
+const t = ui.notFound;
 ---
 
-<Base title="Page not found" noindex>
+<Base title={t.title} noindex>
   <div class="page max-w-content pt-20 pb-8">
-    <h1 class="text-4xl font-bold">Page not found</h1>
-    <p class="text-muted mt-4 text-lg">
-      This page is not here. It may have moved, or never existed.
-    </p>
-    <p class="hand mt-4 -rotate-1 text-2xl">try the list of essays instead</p>
+    <h1 class="text-4xl font-bold">{t.title}</h1>
+    <p class="text-muted mt-4 text-lg">{t.text}</p>
+    <p class="hand mt-4 -rotate-1 text-2xl">{t.hand}</p>
     <p class="font-ui mt-6 text-sm">
       <a href="/posts" class="underline">
-        All essays
+        {t.allEssays}
       </a>
       {' · '}
       <a href="/" class="underline">
-        Home
+        {t.home}
       </a>
     </p>
   </div>

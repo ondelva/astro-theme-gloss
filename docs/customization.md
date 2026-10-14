@@ -11,7 +11,7 @@ Site settings live in `src/config.ts`, colours and spacing in `src/styles/`, fon
 | `name`           | The site's name: the header, page titles, the feed. For a personal site, usually your name.    |
 | `description`    | The home page's meta description and the feed description.                                     |
 | `url`            | Your domain, `https://…`, no trailing slash. Sitemap, canonical links and social cards use it. |
-| `locale`         | The page language, `en`, `ko`, `de` …                                                          |
+| `locale`         | The page language, `en`, `ko`, `de` …, and the language of dates and numbers.                  |
 | `author`         | Your name in the footer, structured data and social cards.                                     |
 | `defaultOgImage` | The social card for pages without their own: a 1200×630 PNG in `public/`.                      |
 
@@ -20,6 +20,10 @@ Site settings live in `src/config.ts`, colours and spacing in `src/styles/`, fon
 ## Navigation
 
 `nav.header` in `src/config.ts`: a list of `{ label, href }`. The current page is underlined. The name in the header always links home. The footer holds the copyright line and the RSS link: edit `src/components/common/Footer.astro`.
+
+## Words and language
+
+Every word the theme prints is in `ui` at the end of `src/config.ts`: the reading time and word count, the archive heading, the earlier/later links, the 404 page, the theme switch. To publish in another language, set `site.locale` and translate `ui`. Counts are functions, so plurals stay right: ``essays: (count) => `${count} Essays` ``. The fonts load their Latin characters only (`subsets: ['latin']` in `astro.config.mjs`): for another script, add its subset if the font has one, or the text falls back to the system face.
 
 ## The home page
 

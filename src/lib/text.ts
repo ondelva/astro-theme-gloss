@@ -1,4 +1,5 @@
 // Pure helpers, no astro: imports, so src/lib/posts.check.ts can run them under plain node.
+import { site } from '../config.ts';
 
 const WORDS_PER_MINUTE = 230;
 // Chinese and Japanese are written without spaces: each character counts as a word and reads
@@ -22,14 +23,14 @@ export const readingMinutes = (words: number): number =>
   Math.max(1, Math.round(words / WORDS_PER_MINUTE));
 
 // UTC, or the date shifts back a day for readers west of Greenwich.
-const long = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
-const yearMonth = new Intl.DateTimeFormat('en', {
+const long = new Intl.DateTimeFormat(site.locale, { dateStyle: 'long', timeZone: 'UTC' });
+const yearMonth = new Intl.DateTimeFormat(site.locale, {
   year: 'numeric',
   month: '2-digit',
   timeZone: 'UTC',
 });
 
-/** "October 4, 2026" */
+/** "October 4, 2026" in English; site.locale sets the language. */
 export const formatDate = (date: Date): string => long.format(date);
 
 /** "2026·10", the list column. */

@@ -43,3 +43,37 @@ export const analytics = {
   // Empty means the hosted service. GA4 ignores it.
   host: '',
 };
+
+// Every word the theme prints, in one place: translate these and set site.locale, which also
+// sets the language of dates and numbers. Counts are functions, so plurals stay right:
+// essays: (count) => `${count} Essays`.
+const n = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
+export const ui = {
+  skipToContent: 'Skip to content',
+  mainNav: 'Main', // read out for the header links
+  rss: 'RSS',
+  theme: { name: 'Theme', system: 'System', light: 'Light', dark: 'Dark' },
+  minutes: (count: number) => `${count} min`, // a list row
+  minutesRead: (count: number) => `${count} min read`, // under a title, and on its social card
+  words: (count: string) => `${count} words`, // count arrives formatted: 1,794
+  updated: 'updated',
+  recentEssays: 'Recent essays', // read out before the home list
+  allEssays: (count: number) => `All ${count} essays`,
+  archive: {
+    title: 'Essays',
+    description: (count: number) => `All ${count} essays, newest first.`,
+    count: (count: number) => `${n(count, 'essay', 'essays')}, newest first.`,
+  },
+  filedUnder: 'Filed under',
+  moreEssays: 'More essays', // read out for the earlier/later links
+  earlier: 'Earlier',
+  later: 'Later',
+  note: (number: number) => `Note ${number}`, // read out for a margin note's number
+  notFound: {
+    title: 'Page not found',
+    text: 'This page is not here. It may have moved, or never existed.',
+    hand: 'try the list of essays instead',
+    allEssays: 'All essays',
+    home: 'Home',
+  },
+};

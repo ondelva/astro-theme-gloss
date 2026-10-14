@@ -7,7 +7,7 @@ import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 import Analytics from '../components/common/Analytics.astro';
 import DemoBar from '../components/common/DemoBar.astro';
-import { site } from '../config';
+import { site, ui } from '../config';
 
 type Props = ComponentProps<typeof SEO>;
 ---
@@ -44,7 +44,7 @@ type Props = ComponentProps<typeof SEO>;
       href="#main"
       class="bg-foreground text-background font-ui sr-only z-50 text-sm no-underline focus:fixed focus:top-4 focus:left-4 focus:not-sr-only focus:px-4 focus:py-2"
     >
-      Skip to content
+      {ui.skipToContent}
     </a>
     <DemoBar />
     <Header />

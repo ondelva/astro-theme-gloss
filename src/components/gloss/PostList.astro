@@ -2,13 +2,14 @@
 // One row per post: date column, title, reading time, and the post's handwritten note.
 // Home and archive share it; the archive groups by year, so it shows the month only.
 import { formatYearMonth, postPath, type Post } from '../../lib/posts';
+import { site, ui } from '../../config';
 
 interface Props {
   posts: Post[];
   monthOnly?: boolean;
 }
 const { posts, monthOnly = false } = Astro.props;
-const month = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' });
+const month = new Intl.DateTimeFormat(site.locale, { month: 'short', timeZone: 'UTC' });
 ---
 
 <ul class="border-border border-t">
@@ -23,7 +24,7 @@ const month = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' })
       <a href={postPath(post)} class="text-lg leading-snug no-underline hover:underline">
         {post.data.title}
       </a>
-      <span class="font-ui text-muted text-sm tabular-nums">{post.minutes} min</span>
+      <span class="font-ui text-muted text-sm tabular-nums">{ui.minutes(post.minutes)}</span>
       {post.data.note && (
         <span class="hand col-start-2 text-[1.3125rem] max-sm:col-start-1 max-sm:col-span-2">
           {post.data.note}

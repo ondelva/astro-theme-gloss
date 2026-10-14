@@ -11,6 +11,7 @@
 // an image gets class gloss-caption. And an attribution: the last paragraph of a blockquote,
 // when it starts with an em dash, gets class gloss-attribution.
 import type { SatteriProcessorOptions } from '@astrojs/markdown-satteri';
+import { ui } from '../config.ts';
 
 type Entry = NonNullable<SatteriProcessorOptions['mdastPlugins']>[number];
 type Plugin = Extract<Entry, { name: string }>;
@@ -108,7 +109,7 @@ export const glossNotes = (): Plugin => {
           {
             type: 'link',
             url: `#note-${node.identifier}`,
-            data: { hProperties: { ariaLabel: `Note ${n}` } },
+            data: { hProperties: { ariaLabel: ui.note(n) } },
             children: [{ type: 'text', value: String(n) }],
           },
         ],

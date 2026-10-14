@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostList from '../components/gloss/PostList.astro';
-import { gloss, site } from '../config';
+import { gloss, site, ui } from '../config';
 import { getPosts } from '../lib/posts';
 import { renderMarks } from '../lib/text';
 
@@ -27,13 +27,13 @@ const recent = posts.slice(0, gloss.homePosts);
     {recent.length > 0 && (
       <section aria-labelledby="recent" class="max-w-content">
         <h2 id="recent" class="sr-only">
-          Recent essays
+          {ui.recentEssays}
         </h2>
         <PostList posts={recent} />
         {posts.length > recent.length && (
           <p class="font-ui mt-5 text-sm">
             <a href="/posts" class="underline">
-              All {posts.length} essays
+              {ui.allEssays(posts.length)}
             </a>
           </p>
         )}

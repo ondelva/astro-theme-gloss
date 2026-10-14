@@ -4,6 +4,12 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-10-14
+
+### Added
+
+- Every word the theme prints is in `ui` in `src/config.ts`, ready to translate. Dates and numbers follow `site.locale` (they were always English).
+
 ## [1.1.1] - 2026-10-14
 
 ### Fixed

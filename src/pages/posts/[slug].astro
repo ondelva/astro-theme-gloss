@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import GlossBody from '../../components/gloss/GlossBody.astro';
-import { site } from '../../config';
+import { site, ui } from '../../config';
 import { formatDate, getPosts, postPath, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -50,13 +50,13 @@ const url = new URL(postPath(post), Astro.site).href;
       <p class="font-ui text-muted mt-5 text-sm tabular-nums">
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
         {' · '}
-        {post.minutes} min read
+        {ui.minutesRead(post.minutes)}
         {' · '}
-        {post.words.toLocaleString('en')} words
+        {ui.words(post.words.toLocaleString(site.locale))}
         {updated && (
           <>
             {' · '}
-            updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+            {ui.updated} <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
           </>
         )}
       </p>
@@ -67,15 +67,19 @@ const url = new URL(postPath(post), Astro.site).href;
     </GlossBody>
 
     <footer class="max-w-content font-ui mt-12 text-sm">
-      {tags.length > 0 && <p class="text-muted">Filed under {tags.join(', ')}</p>}
+      {tags.length > 0 && (
+        <p class="text-muted">
+          {ui.filedUnder} {tags.join(', ')}
+        </p>
+      )}
       {(newer || older) && (
         <nav
-          aria-label="More essays"
+          aria-label={ui.moreEssays}
           class="border-border mt-6 grid gap-4 border-t pt-5 sm:grid-cols-2"
         >
           {older && (
             <a href={postPath(older)} rel="prev" class="group no-underline">
-              <span class="text-muted block">Earlier</span>
+              <span class="text-muted block">{ui.earlier}</span>
               <span class="font-prose text-foreground text-lg group-hover:underline">
                 {older.data.title}
               </span>
@@ -87,7 +91,7 @@ const url = new URL(postPath(post), Astro.site).href;
               rel="next"
               class="group no-underline sm:col-start-2 sm:text-end"
             >
-              <span class="text-muted block">Later</span>
+              <span class="text-muted block">{ui.later}</span>
               <span class="font-prose text-foreground text-lg group-hover:underline">
                 {newer.data.title}
               </span>

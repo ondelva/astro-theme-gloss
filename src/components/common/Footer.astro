@@ -1,5 +1,5 @@
 ---
-import { site } from '../../config';
+import { site, ui } from '../../config';
 
 const year = new Date().getFullYear();
 ---
@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
     {`© ${year} ${site.author}`}
     {' · '}
     <a href="/rss.xml" class="underline">
-      RSS
+      {ui.rss}
     </a>
     {' · '}
     {/* The theme credit. Delete this line and the separator above if you would rather not have it. */}

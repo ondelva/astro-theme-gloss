@@ -2,15 +2,16 @@
 import Base from '../../layouts/Base.astro';
 import PostList from '../../components/gloss/PostList.astro';
 import { byYear, getPosts } from '../../lib/posts';
+import { ui } from '../../config';
 
 const posts = await getPosts();
 const years = byYear(posts);
 ---
 
-<Base title="Essays" description={`All ${posts.length} essays, newest first.`}>
+<Base title={ui.archive.title} description={ui.archive.description(posts.length)}>
   <div class="page max-w-content pt-14 sm:pt-20">
-    <h1 class="text-4xl font-bold">Essays</h1>
-    <p class="font-ui text-muted mt-2 text-sm">{posts.length} essays, newest first.</p>
+    <h1 class="text-4xl font-bold">{ui.archive.title}</h1>
+    <p class="font-ui text-muted mt-2 text-sm">{ui.archive.count(posts.length)}</p>
     {years.map(([year, list]) => (
       <section aria-labelledby={`y${year}`} class="mt-12">
         <h2 id={`y${year}`} class="font-ui mb-3 text-sm font-semibold tabular-nums">

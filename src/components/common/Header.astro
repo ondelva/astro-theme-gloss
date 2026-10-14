@@ -1,7 +1,7 @@
 ---
 // Top bar: the author's name in the book face, the nav and theme switch in the UI face.
 import ThemeToggle from './ThemeToggle.astro';
-import { features, nav, site } from '../../config';
+import { features, nav, site, ui } from '../../config';
 
 const here = Astro.url.pathname.replace(/\/$/, '');
 ---
@@ -12,7 +12,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
   </a>
   {/* Nav and toggle wrap as one group, so the toggle never drops to a line of its own */}
   <div class="font-ui text-muted ms-auto flex items-baseline gap-x-5 text-sm">
-    <nav aria-label="Main">
+    <nav aria-label={ui.mainNav}>
       <ul class="flex flex-wrap gap-x-5">
         {nav.header.map(({ label, href }) => (
           <li>
