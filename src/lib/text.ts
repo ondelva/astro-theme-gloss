@@ -1,6 +1,9 @@
 // Pure helpers, no astro: imports, so src/lib/posts.check.ts can run them under plain node.
 
 const WORDS_PER_MINUTE = 230;
+// Chinese and Japanese are written without spaces: each character counts as a word and reads
+// faster than one. Korean separates words with spaces and counts like English.
+const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu;
 
 /** Words a reader reads: code, HTML comments, images, link targets and mark syntax are not counted. */
 export const countWords = (markdown: string): number =>
@@ -11,6 +14,7 @@ export const countWords = (markdown: string): number =>
     .replace(/\]\([^)]*\)/g, ']')
     .replace(/\[\^[^\]]+\]:?/g, ' ')
     .replace(/==|\+\+/g, '')
+    .replace(CJK, ' x ')
     .split(/\s+/)
     .filter((token) => /\p{L}|\p{N}/u.test(token)).length;
 

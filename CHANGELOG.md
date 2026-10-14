@@ -4,6 +4,13 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] - 2026-10-14
+
+### Fixed
+
+- With analytics set to GA4, `gtag()` is now on `window`, so your own events can call it (it was a function local to the snippet).
+- Chinese and Japanese are counted by character for the reading time; a sentence without spaces used to count as one word.
+
 ## [1.1.0] - 2026-10-13
 
 ### Added
