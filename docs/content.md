@@ -68,6 +68,12 @@ It was ++how often I went back++ that surprised me.
 
 The home page opening line in `src/config.ts` (`gloss.intro`) takes the same two marks.
 
+## Math
+
+Write a formula between dollar signs: `$…$` inside a sentence, `$$…$$` on lines of its own. It works in margin notes too. It is set with KaTeX when the site is built, so the page needs no script, and only a post with math loads KaTeX's stylesheet. Chemical equations use mhchem: `$\ce{2H2 + O2 -> 2H2O}$`.
+
+Two dollar signs in one paragraph (`$20 and $30`) read as a formula between them. Write `\$` for a dollar sign you mean literally. A highlighter or pencil mark does not reach across a formula, as it does not across code.
+
 ## Pictures, quotes and lists
 
 Put pictures next to the post, in `src/content/posts/images/`, and link them relatively. They are resized at build time. A line set wholly in italics right after a picture is its caption:

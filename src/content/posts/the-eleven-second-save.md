@@ -19,7 +19,13 @@ That returns in about a tenth of a second across 2,300 files. I will not pretend
 
 But the pause was ++never in the file++. It was in everything the app wanted to do before it let me begin: sync, index, check for an update, wonder about my plan. I did not need any of that to write a paragraph.[^1]
 
-Here is the arithmetic I did on that Tuesday. I opened a file perhaps thirty times a day. Eleven seconds, thirty times, is five and a half minutes. That is not much time. The cost was every one of those thirty interruptions, each of which cost me the sentence I was holding.
+Here is the arithmetic I did on that Tuesday. I opened a file perhaps thirty times a day:
+
+$$
+30 \times 11\,\text{s} = 330\,\text{s} = 5\tfrac{1}{2}\,\text{minutes}
+$$
+
+That is not much time. The cost was every one of those thirty interruptions, each of which cost me the sentence I was holding.
 
 I have since looked into why it was slow. The honest answer is that it was doing a great deal on my behalf, none of which I had asked for, and all of which it was proud of.
 

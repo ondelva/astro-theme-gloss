@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import katexCss from 'katex/dist/katex.min.css?url';
 import Base from '../../layouts/Base.astro';
 import GlossBody from '../../components/gloss/GlossBody.astro';
 import { site, ui } from '../../config';
@@ -21,7 +22,7 @@ interface Props {
 }
 const { post, newer, older } = Astro.props;
 const { title, description, date, updated, tags, ogImage } = post.data;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
 const url = new URL(postPath(post), Astro.site).href;
 ---
 
@@ -43,6 +44,7 @@ const url = new URL(postPath(post), Astro.site).href;
     },
   ]}
 >
+  {remarkPluginFrontmatter.hasMath && <link slot="head" rel="stylesheet" href={katexCss} />}
   <article class="page pt-14 sm:pt-20">
     <header class="max-w-content mb-10">
       <h1 class="text-[clamp(2rem,5vw,2.75rem)] leading-[1.1] font-bold tracking-tight">{title}</h1>

@@ -29,6 +29,7 @@ type Props = ComponentProps<typeof SEO>;
     <Font cssVariable="--font-heading" />
     <Font cssVariable="--font-hand" />
     <SEO {...Astro.props} />
+    <slot name="head" />
     <Analytics />
     <script is:inline>
       // Before first paint, or the page flashes the system theme.

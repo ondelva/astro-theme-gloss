@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
 import { gloss, site } from './src/config.ts';
 import { glossMarks, glossNotes } from './src/lib/gloss-plugin.ts';
+import { math } from './src/lib/math.ts';
 
 // Webfonts (fontsource, latin subset, all OFL). --font-body: book text and titles,
 // --font-heading: UI and meta, --font-hand: margin notes only. Gelasio is a calm screen serif
@@ -47,8 +48,10 @@ export default defineConfig({
   site: process.env.SITE_URL ?? site.url,
   markdown: {
     // Astro 7 renders Markdown with Sätteri: plugins are mdast visitors, not remark plugins.
+    // math: $…$ and $$…$$ become KaTeX HTML at build time (src/lib/math.ts). It runs last.
     processor: satteri({
-      mdastPlugins: gloss.marginNotes ? [glossNotes, glossMarks] : [glossMarks],
+      features: { math: true },
+      mdastPlugins: gloss.marginNotes ? [glossNotes, glossMarks, math] : [glossMarks, math],
     }),
     // The default github-dark sets comments at about 3:1 on its background, under WCAG AA.
     shikiConfig: { theme: 'github-dark-high-contrast' },

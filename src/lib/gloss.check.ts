@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { markdownToHtml, mdxToJs, type MarkdownToHtmlResult } from 'satteri';
 import { glossMarks, glossNotes, LONG_NOTE, splitMarks } from './gloss-plugin.ts';
+import { math } from './math.ts';
 
 // Synchronous: neither plugin is async.
 const render = (src: string, notes = true) =>
@@ -57,3 +58,15 @@ assert.match(off, /<mark>marked<\/mark>/);
 await mdxToJs(doc, { mdastPlugins: [glossNotes, glossMarks] });
 
 console.log('gloss: ok');
+
+// Math runs after the notes: a formula in a margin note renders, and the note is measured by its
+// source, not by KaTeX's HTML. Inline math stays in its paragraph, and MDX builds.
+{
+  const opts = { features: { math: true }, mdastPlugins: [glossNotes, glossMarks, math] };
+  const src = 'Energy $E=mc^2$ here.[^1]\n\n[^1]: A note with $x^2$.\n';
+  const html = (markdownToHtml(src, opts) as MarkdownToHtmlResult).html;
+  assert.match(html, /<p>Energy <span class="katex">/);
+  assert.match(html, /<p class="gloss-note" id="note-1" role="note">.*<span class="katex">/);
+  assert.match(String((await mdxToJs(src, opts)).code), /"katex"/);
+  console.log('math: ok');
+}
