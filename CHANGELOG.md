@@ -4,6 +4,13 @@ All notable changes to this theme are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.3.1] - 2026-10-17
+
+### Added
+
+- Demo builds get a What's new page (this changelog, with links to the demo pages that show each
+  feature), linked from the demo bar. Buyer builds are unchanged.
+
 ## [1.3.0] - 2026-10-17
 
 ### Added
@@ -12,6 +19,7 @@ All notable changes to this theme are recorded here. The format follows
   at build time (no client JavaScript). Chemical equations work through mhchem (`\ce{…}`). Only a
   post with math loads the KaTeX stylesheet and fonts. If a post has two dollar amounts in one
   paragraph (`$20 and $30`), the text between them now renders as a formula: escape them as `\$20`.
+  See it in the demo: [The eleven second save](https://gloss-free.ondelva.com/posts/the-eleven-second-save/).
 
 ## [1.2.0] - 2026-10-14
 

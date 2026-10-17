@@ -5,6 +5,8 @@ An Astro theme for a personal blog of long essays: a book page, a wide margin, a
 [Live demo](https://gloss-free.ondelva.com) · [Pro demo](https://gloss.ondelva.com) ·
 [Get Pro](https://buy.polar.sh/polar_cl_hPrXyP9mUZP6xdiLYiPQNqpzpUWuE5gGLQ90t41idL8)
 
+What's new: [release notes](https://github.com/ondelva/astro-theme-gloss/releases) · [changelog in the demo](https://gloss-free.ondelva.com/whats-new/)
+
 ![Gloss: a long essay with handwritten notes in the margin](docs/screenshots/home-light.png)
 
 ## What it is
